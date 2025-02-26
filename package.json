@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.3",
+    "tailwindcss": "^4.0.3"
+  },
+  "scripts": {
+    "man": "npx @tailwindcss/cli -i ./style/input.css -o ./style/output.css --watch",
+    "pug": "pug pug/ --out html/ --watch"
+  },
+  "devDependencies": {
+    "pug-cli": "^1.0.0-alpha6"
+  }
+}
