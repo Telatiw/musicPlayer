@@ -40,7 +40,8 @@ let musics = [
 ];
 let indexmusic = 0;
 let playFlag = false;
-function play() {
+function play(event) {
+    event.preventDefault()
   if (playFlag) {
       playBtnElem.classList.replace('bi-pause','bi-play-fill')
     musicElem.pause();
@@ -51,7 +52,8 @@ function play() {
     playFlag = true;
   }
 }
-function next() {
+function next(event) {
+    event.preventDefault()
   indexmusic++;
   if (indexmusic > musics.length - 1) {
     indexmusic = 0;
@@ -64,7 +66,8 @@ function next() {
   musicElem.play();
   playFlag = true;
 }
-function previous() {
+function previous(event) {
+    event.preventDefault()
   indexmusic--;
   if (indexmusic < 0) {
     indexmusic = musics.length - 1;
