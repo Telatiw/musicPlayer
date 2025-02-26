@@ -10,29 +10,29 @@ const nextBtnElem = document.querySelector(".nextBtn");
 const musicElem = document.querySelector(".music");
 let musics = [
   {
-    music: "../media/beat-R&B.mp3",
-    background: "../media/images/coffee-code.jpg",
+    music: "media/beat-R&B.mp3",
+    background: "media/images/coffee-code.jpg",
     title: "daniyal",
     singer: "kado",
     duration: "1:50",
   },
   {
-    music: "../media/beat.2-R&B.mp3",
-    background: "../media/images/laptop-in-dark.jpg",
+    music: "media/beat.2-R&B.mp3",
+    background: "media/images/laptop-in-dark.jpg",
     title: "siyah",
     singer: "hidden",
     duration: "2:20",
   },
   {
-    music: "../media/BeatRapOfficial - Rnb Beat Tberbeats.mp3",
-    background: "../media/images/pc+coffe=code.jpg",
+    music: "media/BeatRapOfficial - Rnb Beat Tberbeats.mp3",
+    background: "media/images/pc+coffe=code.jpg",
     title: "asabani",
     singer: "shayea",
     duration: "2:00",
   },
   {
-    music: "../media/Trap BeatRapOfficial (1).mp3",
-    background: "../media/images/sleep-infront-of-pc.jpg",
+    music: "media/Trap BeatRapOfficial (1).mp3",
+    background: "media/images/sleep-infront-of-pc.jpg",
     title: "miriTolak",
     singer: "Ho3ein X Pishro",
     duration: "1:20",
