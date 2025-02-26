@@ -41,19 +41,19 @@ let musics = [
 let indexmusic = 0;
 let playFlag = false;
 function play(event) {
-    event.preventDefault()
+  event.preventDefault();
   if (playFlag) {
-      playBtnElem.classList.replace('bi-pause','bi-play-fill')
+    playBtnElem.classList.replace("bi-pause", "bi-play-fill");
     musicElem.pause();
     playFlag = false;
   } else {
-    playBtnElem.classList.replace('bi-play-fill','bi-pause')
+    playBtnElem.classList.replace("bi-play-fill", "bi-pause");
     musicElem.play();
     playFlag = true;
   }
 }
 function next(event) {
-    event.preventDefault()
+  event.preventDefault();
   indexmusic++;
   if (indexmusic > musics.length - 1) {
     indexmusic = 0;
@@ -67,7 +67,7 @@ function next(event) {
   playFlag = true;
 }
 function previous(event) {
-    event.preventDefault()
+  event.preventDefault();
   indexmusic--;
   if (indexmusic < 0) {
     indexmusic = musics.length - 1;
@@ -97,38 +97,33 @@ function currentTime() {
   }
   fromTimeElem.textContent = minute + ":" + second;
 }
-function currentPlus()
-{
-    musicElem.currentTime += 10
+function currentPlus() {
+  musicElem.currentTime += 10;
 }
-function currentMinus()
-{
-    musicElem.currentTime -= 10
+function currentMinus() {
+  musicElem.currentTime -= 10;
 }
-function speed2()
-{
-    musicElem.playbackRate = 2
+function speed2() {
+  musicElem.playbackRate = 2;
 }
-function speed1()
-{
-    musicElem.playbackRate = 1
+function speed1() {
+  musicElem.playbackRate = 1;
 }
-function speed05()
-{
-    musicElem.playbackRate = 0.5
+function speed05() {
+  musicElem.playbackRate = 0.5;
 }
-function updateprogress()
-{
-    let progressPercent = (Math.floor(musicElem.currentTime) /Math.floor(musicElem.duration) ) * 100
-    progressPercentElem.style.width = Math.floor(progressPercent) + "%"
-    console.log(progressPercentElem);
+function updateprogress() {
+  let progressPercent =
+    (Math.floor(musicElem.currentTime) / Math.floor(musicElem.duration)) * 100;
+  progressPercentElem.style.width = Math.floor(progressPercent) + "%";
+  console.log(progressPercentElem);
 }
 playBtnElem.addEventListener("click", play);
 nextBtnElem.addEventListener("click", next);
 previousBtnElem.addEventListener("click", previous);
-playBtnElem.addEventListener("touchstart", play);
-nextBtnElem.addEventListener("touchstart", next);
-previousBtnElem.addEventListener("touchstart", previous);
+playBtnElem.addEventListener("touchend", play);
+nextBtnElem.addEventListener("touchend", next);
+previousBtnElem.addEventListener("touchend", previous);
 document.body.addEventListener("keyup", function (event) {
   if (event.code === "Space") {
     play();
@@ -136,23 +131,17 @@ document.body.addEventListener("keyup", function (event) {
     next();
   } else if (event.code === "PageDown") {
     previous();
-  } else if(event.code === "ArrowLeft")
-  {
-    currentMinus()
-  } else if(event.code === "ArrowRight")
-  {
-    currentPlus()
-  } 
-  else if( event.key === "l")
-  {
-    speed2() 
-  } else if(event.key === "k")
-  {
-    speed1()
-  } else if(event.key === "j")
-  {
-    speed05()
+  } else if (event.code === "ArrowLeft") {
+    currentMinus();
+  } else if (event.code === "ArrowRight") {
+    currentPlus();
+  } else if (event.key === "l") {
+    speed2();
+  } else if (event.key === "k") {
+    speed1();
+  } else if (event.key === "j") {
+    speed05();
   }
 });
-setInterval(currentTime,200)
-setInterval(updateprogress,500)
+setInterval(currentTime, 200);
+setInterval(updateprogress, 500);
