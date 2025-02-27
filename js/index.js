@@ -3,11 +3,13 @@ const titleElem = document.querySelector(".title");
 const singerElem = document.querySelector(".singer");
 const fromTimeElem = document.querySelector(".fromTime");
 const endTimeElem = document.querySelector(".endTime");
+const progressTimeline = document.querySelector('.progress-timeLine')
 const progressPercentElem = document.querySelector(".progress-percent-time");
 const playBtnElem = document.querySelector(".playBtn");
 const previousBtnElem = document.querySelector(".previousBtn");
 const nextBtnElem = document.querySelector(".nextBtn");
 const musicElem = document.querySelector(".music");
+const circleProgress = document.querySelector('.circle-progress') 
 let musics = [
   {
     music: "media/beat-R&B.mp3",
@@ -40,8 +42,7 @@ let musics = [
 ];
 let indexmusic = 0;
 let playFlag = false;
-function play(event) {
-  event.preventDefault();
+function play() {
   if (playFlag) {
     playBtnElem.classList.replace("bi-pause", "bi-play-fill");
     musicElem.pause();
@@ -52,8 +53,7 @@ function play(event) {
     playFlag = true;
   }
 }
-function next(event) {
-  event.preventDefault();
+function next() {
   indexmusic++;
   if (indexmusic > musics.length - 1) {
     indexmusic = 0;
@@ -64,10 +64,8 @@ function next(event) {
   bgImageElem.setAttribute("src", musics[indexmusic].background);
   endTimeElem.textContent = musics[indexmusic].duration;
   musicElem.play();
-  playFlag = true;
 }
-function previous(event) {
-  event.preventDefault();
+function previous() {
   indexmusic--;
   if (indexmusic < 0) {
     indexmusic = musics.length - 1;
@@ -78,7 +76,6 @@ function previous(event) {
   singerElem.textContent = musics[indexmusic].singer;
   endTimeElem.textContent = musics[indexmusic].duration;
   musicElem.play();
-  playFlag = true;
 }
 function currentTime() {
   let musicTime = Math.floor(musicElem.currentTime);
@@ -116,7 +113,14 @@ function updateprogress() {
   let progressPercent =
     (Math.floor(musicElem.currentTime) / Math.floor(musicElem.duration)) * 100;
   progressPercentElem.style.width = Math.floor(progressPercent) + "%";
-  console.log(progressPercentElem);
+  circleProgress.style.left = (Math.floor(progressPercent) - 3) + "%"
+}
+function clickTime(event)
+{
+  let barWidth = progressTimeline.clientWidth; 
+  let clickX = event.offsetX;
+  let newTime = (clickX / barWidth) * musicElem.duration
+  musicElem.currentTime = newTime
 }
 playBtnElem.addEventListener("click", play);
 nextBtnElem.addEventListener("click", next);
@@ -124,6 +128,7 @@ previousBtnElem.addEventListener("click", previous);
 playBtnElem.addEventListener("touchend", play);
 nextBtnElem.addEventListener("touchend", next);
 previousBtnElem.addEventListener("touchend", previous);
+progressTimeline.addEventListener('click',clickTime)
 document.body.addEventListener("keyup", function (event) {
   if (event.code === "Space") {
     play();
